@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>{{ number }}</p>
+    <button @[event]="countup">CountUp</button>
+    <p v-on:mousemove="chengeMouseMove($event, 20)">マウスを乗せてください
+      <span v-on:mousemove.stop>反応しないでください</span>
+    </p>
+    <p>x:{{ x }}, y:{{ y }}</p>
+    <a v-on:click.prevent href="https://google.com">Google</a>
+    <input type="text" v-on:keyup.space.enter="alert">
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        event: "click",
+        number: 0,
+        x: 0,
+        y: 0
+      },
+      methods: {
+        countup: function() {
+          this.number += 1
+        },
+        chengeMouseMove: function (event, test) {
+          this.x = event.clientX / test;
+          this.y = event.clientY / test;
+        },
+        alert: function() {
+          alert("やっほー");
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
